@@ -6,6 +6,8 @@ import 'package:shopee_seller_app/views/screens/home/home_screen.dart';
 import 'package:shopee_seller_app/views/utils/app_colors/app_colors.dart';
 import 'package:shopee_seller_app/views/utils/app_extensions/app_extensions.dart';
 
+import '../../views/screens/home/profile/profile_screen.dart';
+
 class AuthController {
   static phoneAuth(String number, BuildContext context) {
     FirebaseAuth.instance.verifyPhoneNumber(
@@ -25,7 +27,7 @@ class AuthController {
         verificationId: verificationId, smsCode: smsCode);
     FirebaseAuth.instance.signInWithCredential(credential).whenComplete(() {
       if(FirebaseAuth.instance.currentUser?.uid != null){
-       context.pushReplace(HomeScreen());
+       context.pushReplace(ProfileScreen());
         context.showSnackBar(title: "Otp: ", message: ' verification completed', color: AppColor.dark);
       }
     });
